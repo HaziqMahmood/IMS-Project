@@ -23,7 +23,7 @@ package com.qa.ims.persistence.dao;
 		private String password;
 
 		public ItemDaoMySql(String username, String password) {
-			this.jdbcConnectionUrl = "jdbc:mysql://35.189.117.62:3306/IMS";
+			this.jdbcConnectionUrl = "jdbc:mysql://35.189.117.62:3306/ims";
 			this.username = username;
 			this.password = password;
 		}
@@ -106,14 +106,6 @@ package com.qa.ims.persistence.dao;
 			return null;
 		}
 
-		/*
-		 *This is a comment!
-		 *It's also a magic trick.
-		 *Look at this!
-		 *
-		 *
-		 *WHOOSH
-		 */
 		
 		/**
 		 * Updates an item in the database
