@@ -4,10 +4,14 @@ import org.apache.log4j.Logger;
 
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
+import com.qa.ims.controller.CrudItemController;
 import com.qa.ims.controller.CustomerController;
+import com.qa.ims.controller.ItemController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
+import com.qa.ims.persistence.dao.ItemDaoMySql;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.services.CustomerServices;
+import com.qa.ims.services.ItemServices;
 import com.qa.ims.utils.Utils;
 
 public class Ims {
@@ -19,7 +23,6 @@ public class Ims {
 		String username = Utils.getInput();
 		LOGGER.info("What is your password");
 		String password = Utils.getInput();
-		
 		LOGGER.info("Which entity would you like to use?");
 		Domain.printDomains();
 		
@@ -35,6 +38,8 @@ public class Ims {
 			doAction(customerController, action);
 			break;
 		case ITEM:
+			ItemController itemController = new ItemController(new ItemServices(new ItemDaoMySql(username, password)));
+			doActionItems(itemController, action);
 			break;
 		case ORDER:
 			break;
@@ -46,7 +51,7 @@ public class Ims {
 		
 	}
 	
-	public void doAction(CrudController crudController, Action action) {
+	public void doAction(CrudController<?> crudController, Action action) {
 		switch (action) {
 		case CREATE:
 			crudController.create();
@@ -59,6 +64,27 @@ public class Ims {
 			break;
 		case DELETE:
 			crudController.delete();
+			break;
+		case RETURN:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	public void doActionItems(CrudItemController<?> cruditemController, Action action) {
+		switch (action) {
+		case CREATE:
+			cruditemController.create();
+			break;
+		case READ:
+			cruditemController.readAll();
+			break;
+		case UPDATE:
+			cruditemController.update();
+			break;
+		case DELETE:
+			cruditemController.delete();
 			break;
 		case RETURN:
 			break;

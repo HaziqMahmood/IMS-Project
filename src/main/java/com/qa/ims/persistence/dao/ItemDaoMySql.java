@@ -16,14 +16,14 @@ package com.qa.ims.persistence.dao;
 	public class ItemDaoMySql implements Dao<Item> {
 
 
-		public static final Logger LOGGER = Logger.getLogger(ItemDaoMysql.class);
+		public static final Logger LOGGER = Logger.getLogger(ItemDaoMySql.class);
 
 		private String jdbcConnectionUrl;
 		private String username;
 		private String password;
 
 		public ItemDaoMySql(String username, String password) {
-			this.jdbcConnectionUrl = "jdbc:mysql://35.189.117.62:3306/IMS";
+			this.jdbcConnectionUrl = "jdbc:mysql:///IMS";
 			this.username = username;
 			this.password = password;
 		}
@@ -110,16 +110,14 @@ package com.qa.ims.persistence.dao;
 		 * Updates an item in the database
 		 * 
 		 * @param item - takes in an item object, the id field will be used to
-		 *                 update that customer in the database
+		 *                 update that item in the database
 		 * @return 
 		 */
 		@Override
-		public Customer update(Customer customer) {
+		public Item update(Item item) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("update customer set customer_firstName ='" + customer.getFirstName() + "', customer_surname ='"
-						+ customer.getSurname() + "' where id =" + customer.getId());
-				return readCustomer(customer.getId());
+				statement.executeUpdate("update Item set Item_name ='" + item.getName());
 			} catch (Exception e) {
 				LOGGER.debug(e.getStackTrace());
 				LOGGER.error(e.getMessage());
@@ -128,15 +126,15 @@ package com.qa.ims.persistence.dao;
 		}
 
 		/**
-		 * Deletes a customer in the database
+		 * Deletes an item in the database
 		 * 
-		 * @param id - id of the customer
+		 * @param id - id of the item
 		 */
 		@Override
 		public void delete(long id) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("delete from customer where customer_ID = " + id);
+				statement.executeUpdate("delete from Item where Item_ID = " + id);
 			} catch (Exception e) {
 				LOGGER.debug(e.getStackTrace());
 				LOGGER.error(e.getMessage());
@@ -146,4 +144,4 @@ package com.qa.ims.persistence.dao;
 	}
 
 
-}
+

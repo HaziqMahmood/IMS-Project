@@ -6,7 +6,7 @@ package com.qa.ims.services;
 
 import com.qa.ims.persistence.domain.Item;
 
-	public class ItemServices implements CrudServices<Item> {
+	public class ItemServices implements CrudItemServices<Item> {
 
 		Dao<Item> itemDao;
 		

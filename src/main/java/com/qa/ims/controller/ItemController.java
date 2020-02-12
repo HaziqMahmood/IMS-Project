@@ -4,21 +4,23 @@ package com.qa.ims.controller;
 
 	import org.apache.log4j.Logger;
 
-	import com.qa.ims.persistence.domain.Item;
-	import com.qa.ims.services.CrudServices;
+import com.qa.ims.persistence.domain.Customer;
+import com.qa.ims.persistence.domain.Item;
+import com.qa.ims.services.CrudItemServices;
+import com.qa.ims.services.CrudServices;
 	import com.qa.ims.utils.Utils;
 
 	/**
 	 * Takes in item details for CRUD functionality
 	 *
 	 */
-	public class ItemController implements CrudController<Item>{
+	public class ItemController implements CrudItemController<Item>{
 
 		public static final Logger LOGGER = Logger.getLogger(ItemController.class);
 		
-		private CrudServices<Item> itemService;
+		private CrudItemServices<Item> itemService;
 		
-		public ItemController(CrudServices<Item> ItemService) {
+		public ItemController(CrudItemServices<Item> itemService) {
 			this.itemService = itemService;
 		}
 		
@@ -41,7 +43,7 @@ package com.qa.ims.controller;
 		/**
 		 * Creates a customer by taking in user input
 		 */
-		@Override
+		
 		public Item create() {
 			LOGGER.info("Please enter item name:");
 			String Name = getInput();
