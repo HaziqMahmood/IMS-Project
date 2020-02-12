@@ -23,7 +23,7 @@ package com.qa.ims.persistence.dao;
 		private String password;
 
 		public ItemDaoMySql(String username, String password) {
-			this.jdbcConnectionUrl = "jdbc:mysql:///IMS";
+			this.jdbcConnectionUrl = "jdbc:mysql://35.189.117.62:3306/IMS";
 			this.username = username;
 			this.password = password;
 		}
@@ -65,7 +65,7 @@ package com.qa.ims.persistence.dao;
 		public Item readLatest() {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT FROM Item ORDER BY Item_ID DESC LIMIT 1");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM Item ORDER BY Item_ID DESC LIMIT 1");) {
 				resultSet.next();
 				return itemFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -106,6 +106,15 @@ package com.qa.ims.persistence.dao;
 			return null;
 		}
 
+		/*
+		 *This is a comment!
+		 *It's also a magic trick.
+		 *Look at this!
+		 *
+		 *
+		 *WHOOSH
+		 */
+		
 		/**
 		 * Updates an item in the database
 		 * 
@@ -117,14 +126,17 @@ package com.qa.ims.persistence.dao;
 		public Item update(Item item) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("update Item set Item_name ='" + item.getName());
+				statement.executeUpdate("update Item set Item_name =" + item.getName() + " where Item_ID =" + item.getId());
+				
+				
+				return readItem(item.getId());
 			} catch (Exception e) {
 				LOGGER.debug(e.getStackTrace());
 				LOGGER.error(e.getMessage());
 			}
 			return null;
 		}
-
+	
 		/**
 		 * Deletes an item in the database
 		 * 

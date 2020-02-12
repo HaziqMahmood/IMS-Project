@@ -4,10 +4,10 @@ package com.qa.ims.controller;
 
 	import org.apache.log4j.Logger;
 
-import com.qa.ims.persistence.domain.Customer;
+
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.services.CrudItemServices;
-import com.qa.ims.services.CrudServices;
+
 	import com.qa.ims.utils.Utils;
 
 	/**
