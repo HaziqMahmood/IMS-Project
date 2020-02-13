@@ -35,9 +35,10 @@ package com.qa.ims.persistence.dao;
 		}
 
 		public Item itemFromResultSet(ResultSet resultSet) throws SQLException {
-			Long id = resultSet.getLong("Item_ID");
-			String Name = resultSet.getString("Item_name");
-			return new Item(id, Name);
+			Long id = resultSet.getLong("item_id");
+			String Name = resultSet.getString("item_name");
+			Double Cost = resultSet.getDouble("cost")
+			return new Item(id, Name, Cost);
 		}
 		/**
 		 * Reads all items from the database
@@ -49,7 +50,7 @@ package com.qa.ims.persistence.dao;
 			try (Connection connection = DriverManager
 					.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("select * from Item");) {
+					ResultSet resultSet = statement.executeQuery("select * from item");) {
 				ArrayList<Item> items = new ArrayList<>();
 				while (resultSet.next()) {
 					items.add(itemFromResultSet(resultSet));
@@ -65,7 +66,7 @@ package com.qa.ims.persistence.dao;
 		public Item readLatest() {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT * FROM Item ORDER BY Item_ID DESC LIMIT 1");) {
+					ResultSet resultSet = statement.executeQuery("SELECT * FROM Item ORDER BY item_id DESC LIMIT 1");) {
 				resultSet.next();
 				return itemFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -84,7 +85,7 @@ package com.qa.ims.persistence.dao;
 		public Item create(Item item) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("insert into Item(Item_name) values('" + item.getName()  + "')");
+				statement.executeUpdate("insert into item(item_name) values('" + item.getName()  + "')");
 				return readLatest();
 			} catch (Exception e) {
 				LOGGER.debug(e.getStackTrace());
@@ -96,7 +97,7 @@ package com.qa.ims.persistence.dao;
 		public Item readItem(Long id) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();
-					ResultSet resultSet = statement.executeQuery("SELECT FROM Item where Item_ID = "+id);) {
+					ResultSet resultSet = statement.executeQuery("SELECT FROM item where item_id = "+id);) {
 				resultSet.next();
 				return itemFromResultSet(resultSet);
 			} catch (Exception e) {
@@ -118,7 +119,7 @@ package com.qa.ims.persistence.dao;
 		public Item update(Item item) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("update Item set Item_name =" + item.getName() + " where Item_ID =" + item.getId());
+				statement.executeUpdate("update item set item_name =" + item.getName() + " where item_id =" + item.getId());
 				
 				
 				return readItem(item.getId());
@@ -138,7 +139,7 @@ package com.qa.ims.persistence.dao;
 		public void delete(long id) {
 			try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 					Statement statement = connection.createStatement();) {
-				statement.executeUpdate("delete from Item where Item_ID = " + id);
+				statement.executeUpdate("delete from Item where item_id = " + id);
 			} catch (Exception e) {
 				LOGGER.debug(e.getStackTrace());
 				LOGGER.error(e.getMessage());

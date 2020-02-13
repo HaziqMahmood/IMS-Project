@@ -1,75 +1,41 @@
 package com.qa.ims.persistence.domain;
 
 public class Item {
-
-		private Long id;
-		private String Name;
+	private long id;
+	private String item_name;
+	private Double cost;
+public Item( String item_name, Double cost) {
+	this.item_name = item_name;
+	this.cost = cost;		
+	}
+public Item(Long id, String item_name, Double cost) {
+	this.id=id;
+	this.item_name = item_name;
+	this.cost = cost;
+}
+	public long getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public Double getItem_value() {
+		return cost;
+	}
+	public Double setItem_value(Double cost) {
+		return cost;
+	}
+	public String toString() {
+		return "id:" + id + " item_name:" + item_name + " cost:" + cost;
+	}
+	public static void add(Item items) {
 		
 
-		public Item(String Name) {
-			this.Name = Name;
-			
-		}
-
-		public Item(Long id, String Name) {
-			this.id = id;
-			this.Name = Name;
-			
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		public String getName() {
-			return Name;
-		}
-
-		public void setName(String Name) {
-			this.Name = Name;
-		}
-
-
-		public String toString() {
-			return "id:" + id + " item name:" + Name;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((Name == null) ? 0 : Name.hashCode());
-			result = prime * result + ((id == null) ? 0 : id.hashCode());
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Item other = (Item) obj;
-			if (Name == null) {
-				if (other.Name != null)
-					return false;
-			} else if (!Name.equals(other.Name))
-				return false;
-			if (id == null) {
-				if (other.id != null)
-					return false;
-			} else if (!id.equals(other.id))
-				return false;
-			
-			return true;
-		}
-
 	}
-
-
+}

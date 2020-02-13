@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
-import com.qa.ims.controller.CrudItemController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
@@ -39,7 +38,7 @@ public class Ims {
 			break;
 		case ITEM:
 			ItemController itemController = new ItemController(new ItemServices(new ItemDaoMySql(username, password)));
-			doActionItems(itemController, action);
+			doActionItem(itemController, action);
 			break;
 		case ORDER:
 			break;
@@ -72,19 +71,19 @@ public class Ims {
 		}
 	}
 	
-	public void doActionItems(CrudItemController<?> cruditemController, Action action) {
+	public void doActionItems(CrudController<?> crudController, Action action) {
 		switch (action) {
 		case CREATE:
-			cruditemController.create();
+			crudController.create();
 			break;
 		case READ:
-			cruditemController.readAll();
+			crudController.readAll();
 			break;
 		case UPDATE:
-			cruditemController.update();
+			crudController.update();
 			break;
 		case DELETE:
-			cruditemController.delete();
+			crudController.delete();
 			break;
 		case RETURN:
 			break;
