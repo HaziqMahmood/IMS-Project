@@ -1,7 +1,8 @@
 package com.qa.ims.services;
 import java.util.List;
 
-import com.qa.ims.persistence.domain.Item;
+
+import com.qa.ims.persistence.domain.Order;
 public interface CrudOrderServices {
 
 	
@@ -12,9 +13,9 @@ public interface CrudOrderServices {
 
 	    public List<Order> readAll();
 	     
-	    Item create(T t);
+	    Order create(T t);
 	     
-	    Item update(T t);
+	    Order update(T t);
 	 
 	    void delete(Long id);
 

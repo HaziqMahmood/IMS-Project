@@ -5,17 +5,17 @@ public class Order {
 	
 
 		private Long id;
-		private String Quantity;
+		private Long Quantity;
 		private double Price;
 		private Long Customer_id;
 		
 
-		public Order(String Quantity) {
+		public Order(Long Quantity, double price2, Long quantity2, Long customer_id2) {
 			this.Quantity = Quantity;
 			
 		}
 
-		public Order(Long id, String Quantity, double Price, Long Customer_id) {
+		public Order(Long id, Long Quantity, double Price, Long Customer_id) {
 			this.id = id;
 			this.Quantity = Quantity;
 			this.Price = Price;
@@ -23,11 +23,11 @@ public class Order {
 			
 		}
 
-		public String getQuantity() {
+		public Long getQuantity() {
 			return Quantity;
 		}
 
-		public void setQuantity(String quantity) {
+		public void setQuantity(Long quantity) {
 			Quantity = quantity;
 		}
 
