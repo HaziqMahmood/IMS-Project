@@ -2,6 +2,7 @@ package com.qa.ims.controller;
 
 import java.util.List;
 import org.apache.log4j.Logger;
+
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.services.CrudServices;
 import com.qa.ims.utils.Utils;
@@ -19,7 +20,7 @@ public class ItemController implements CrudController<Item> {
 		return Utils.getInput();	
 	}
 	/**
-	 * Reads all customers to the logger
+	 * Reads all items to the logger
 	 */
 	@Override
 	public List<Item> readAll() {
@@ -30,7 +31,7 @@ public class ItemController implements CrudController<Item> {
 		return items;
 	}
 	/**
-	 * Creates a customer by taking in user input
+	 * Creates a item by taking in user input
 	 */
 	public Item create() {
 		LOGGER.info("Enter the item you require");
@@ -45,10 +46,10 @@ public class ItemController implements CrudController<Item> {
 		LOGGER.info("Please enter the ID of the item you would like to update");
 		Long id = Long.valueOf(getInput());
 		LOGGER.info("Please enter the item name");
-		String Items_name = getInput();
+		String items_name = getInput();
 		LOGGER.info("Please enter the new item value");
-		Double Items_value = Double.valueOf(getInput());
-		Items items = ItemsService.update(new Items(item_id, item_name, cost));
+		Double items_value = Double.valueOf(getInput());
+		Item items = ItemService.update(new Item(id, items_name, items_value));
 		LOGGER.info("Item List Updated");
 		return items;
 	}
@@ -56,5 +57,6 @@ public class ItemController implements CrudController<Item> {
 		LOGGER.info("Please enter the ID of the item you would like to delete");
 		Long id = Long.valueOf(getInput());
 		ItemService.delete(id);
+		LOGGER.info("Item Deleted");
 	}
 }

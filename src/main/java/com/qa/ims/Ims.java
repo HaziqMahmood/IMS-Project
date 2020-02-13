@@ -38,7 +38,7 @@ public class Ims {
 			break;
 		case ITEM:
 			ItemController itemController = new ItemController(new ItemServices(new ItemDaoMySql(username, password)));
-			doActionItem(itemController, action);
+			doAction(itemController, action);
 			break;
 		case ORDER:
 			break;
