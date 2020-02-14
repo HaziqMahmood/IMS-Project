@@ -2,15 +2,14 @@ package com.qa.ims.services;
 
 import java.util.List;
 
-import com.qa.ims.persistence.domain.Customer;
 
 public interface CrudServices<T> {
 
-    public List<Customer> readAll();
+    public List<T> readAll();
      
-    Customer create(T t);
+    T create(T t);
      
-    Customer update(T t);
+    T update(T t);
  
     void delete(Long id);
 

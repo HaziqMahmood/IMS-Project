@@ -2,7 +2,6 @@ package com.qa.ims.controller;
 
 import java.util.List;
 
-import com.qa.ims.persistence.domain.Customer;
 
 /**
  * Create, Read, Update and Delete controller.
@@ -12,9 +11,9 @@ public interface CrudController<T> {
     
     List<T> readAll();
      
-    Customer create();
+    T create();
      
-    Customer update();
+    T update();
      
     void delete();
 
