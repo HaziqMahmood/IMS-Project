@@ -38,4 +38,39 @@ public Item(Long id, String item_name, Double cost) {
 		
 
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cost == null) ? 0 : cost.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((item_name == null) ? 0 : item_name.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (cost == null) {
+			if (other.cost != null)
+				return false;
+		} else if (!cost.equals(other.cost))
+			return false;
+		if (id != other.id)
+			return false;
+		if (item_name == null) {
+			if (other.item_name != null)
+				return false;
+		} else if (!item_name.equals(other.item_name))
+			return false;
+		return true;
+	}
+	
+	
+	
 }
