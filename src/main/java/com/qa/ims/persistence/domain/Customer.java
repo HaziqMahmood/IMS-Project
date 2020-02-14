@@ -21,10 +21,6 @@ public class Customer {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -80,6 +76,11 @@ public class Customer {
 		} else if (!surname.equals(other.surname))
 			return false;
 		return true;
+	}
+
+	public void setId(Object object) {
+		
+		
 	}
 
 }

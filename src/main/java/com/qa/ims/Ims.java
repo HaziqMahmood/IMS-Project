@@ -4,14 +4,16 @@ import org.apache.log4j.Logger;
 
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
-import com.qa.ims.controller.CrudItemController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemController;
+import com.qa.ims.controller.OrderController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
 import com.qa.ims.persistence.dao.ItemDaoMySql;
+import com.qa.ims.persistence.dao.OrderDaoMysql;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.services.CustomerServices;
 import com.qa.ims.services.ItemServices;
+import com.qa.ims.services.OrderServices;
 import com.qa.ims.utils.Utils;
 
 public class Ims {
@@ -39,9 +41,11 @@ public class Ims {
 			break;
 		case ITEM:
 			ItemController itemController = new ItemController(new ItemServices(new ItemDaoMySql(username, password)));
-			doActionItems(itemController, action);
+			doAction(itemController, action);
 			break;
 		case ORDER:
+			OrderController orderController = new OrderController(new OrderServices(new OrderDaoMysql(username, password)));
+			doAction(orderController, action);
 			break;
 		case STOP:
 			break;
@@ -72,19 +76,19 @@ public class Ims {
 		}
 	}
 	
-	public void doActionItems(CrudItemController<?> cruditemController, Action action) {
+	public void doActionItems(CrudController<?> crudController, Action action) {
 		switch (action) {
 		case CREATE:
-			cruditemController.create();
+			crudController.create();
 			break;
 		case READ:
-			cruditemController.readAll();
+			crudController.readAll();
 			break;
 		case UPDATE:
-			cruditemController.update();
+			crudController.update();
 			break;
 		case DELETE:
-			cruditemController.delete();
+			crudController.delete();
 			break;
 		case RETURN:
 			break;
